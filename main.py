@@ -7,13 +7,14 @@ Created on Wed Feb 24 11:04:56 2021
 """
 
 from symbol_update import update_symbol_list
+from data_update import update_data_stores
 
 """This is the main file for the market analysis project
        The main aim of this project is the practice and learn more aspects of coding
        and create a tool for my own personal use"""
 
 """TO DO LIST:
-      1:Create the functions to create, store and modify the symbol list
+      1:Create the functions to create, store and modify the symbol list - COMPLETE
       2:Create the functions to download, store and update the data from the symbol list
       3:Create the functions to run data analytics for the data stored"""
 
@@ -36,7 +37,7 @@ while exit == False:
     elif choice == 2:
         """update_data_stores is a function to wrap up the updating of data currently
               stored for the symbol lists."""
-        #update_data_stores()
+        update_data_stores()
     elif choice == 3:
         """data_analytics is a function to wrap up the data analysis process.
            It wraps up functions for visualizing the data, running machine learning
