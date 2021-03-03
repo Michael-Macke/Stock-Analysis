@@ -6,6 +6,9 @@ Created on Tue Mar  2 07:23:40 2021
 @author: michael
 """
 
+from read_sym import read_sym
+from path_check import path_check
+from data_modernize import data_modernize
 
 """This will be the function to wrap the updating of the market data for 
       companies and commodities
@@ -29,12 +32,12 @@ def update_data_stores():
           If not empty, the last date in the data will be retrieved and used 
              as the starting point"""
     for symbol in Corpsym:
-        Corp = "Companies/" + symbol + ".csv"
+        Corp = "Companies/" + symbol + "_data/" + symbol + ".csv"
         CorpPath = path_check(Corp, True)
         #data_modernize updates the data to the current dates data
         data_modernize(symbol, CorpPath)
     for symbol in Comsym:
-        Comm = "Commodities/" + symbol + ".csv"
+        Comm = "Commodities/" + symbol + "_data/" + symbol + ".csv"
         CommPath = path_check(Comm, True)
         #data_modernize updates the data to the current dates data
         data_modernize(symbol, CommPath)

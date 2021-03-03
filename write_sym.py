@@ -23,12 +23,18 @@ def write_sym(symt, symlist, modifier):
             print("There is no content to be deleted. \n Returning you to the menu")
             return
         elif content:
-            if modifier == "add":
-                content.add(symlist)
-            elif modifier == "delete":
-                content.discard(symlist)
+            for element in symlist:
+                if modifier == "add":
+                    content.append(element)
+                elif modifier == "delete":
+                    content.remove(element)
     with open(symbol_path, "w") as writer:
-        writer.writelines("%s\n" % symbol for symbol in symlist)
+        writer.writelines("%s\n" % symbol for symbol in content)
+    """Need to create the folders that will store the added symbols data and
+          visualizations"""
+    for sym in content:
+        folder_path = symt + "/" + sym + "_data"
+        path_check(folder_path)
     
     return
             

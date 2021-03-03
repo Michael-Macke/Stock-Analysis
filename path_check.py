@@ -25,6 +25,6 @@ def path_check(to_check, file = False):
         if os.path.isfile(path) == True:
             return path
         else:
-            with open(path, "w") as empty_csv:
+            with open(path, "w+") as empty_csv:
                 pass
             return path
