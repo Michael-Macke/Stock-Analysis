@@ -15,8 +15,10 @@ from data_update import update_data_stores
 
 """TO DO LIST:
       1:Create the functions to create, store and modify the symbol list - COMPLETE
-      2:Create the functions to download, store and update the data from the symbol list
-      3:Create the functions to run data analytics for the data stored"""
+      2:Create the functions to download, store and update the data from the symbol list - COMPLETE
+      3:Create the functions to run data analytics for the data stored
+      4:Do cleanup on the code and output. Make the code more efficient length
+         and processing wise if able"""
 
 exit = False
 

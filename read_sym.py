@@ -21,4 +21,6 @@ def read_sym(symt):
     elif os.path.isfile(symbol_path):
         with open(symbol_path, "r") as reader:
             symbols = reader.readlines()
+            for elements in symbols:
+                cleaned_symbols.append(elements.strip())
         return cleaned_symbols
