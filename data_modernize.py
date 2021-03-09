@@ -24,7 +24,6 @@ def data_modernize(symbol, path):
        end date into a string for it to work with the yahoofinancials function"""
     if not(os.path.isfile(path)):
         """Standard download starting date will be 01/01/2001"""
-        #start = dt.date(2001, 1, 1).strftime('%Y-%m-%d')
         yahoo_financials = YahooFinancials(symbol)
         
         new_data = yahoo_financials.get_historical_price_data(start_date = '2001-01-01',
@@ -48,8 +47,8 @@ def data_modernize(symbol, path):
                                                               time_interval = "daily")
         print("Data pulled for:", symbol)
         new_df = pd.DataFrame(new_data[symbol]['prices'])
-        new_df = new_df.drop('date', axis=1).set_index('formatted_date')
-        data.append(new_df)
+        new_df = new_df.drop('date', axis=1)
+        data = data.append(new_df)
         print("Data for", symbol, "refined and appended. Now saving.\n")
-        data.to_csv(path)
+        data.to_csv(path, index = False)
         
