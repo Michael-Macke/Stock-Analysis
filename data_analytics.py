@@ -5,7 +5,7 @@ Created on Wed Mar 10 08:02:08 2021
 
 @author: michael
 """
-
+from data_vis import data_vis
 
 """This file is the function to wrap up the data analysis and predictive model
    functions."""
@@ -32,7 +32,7 @@ def data_analytics():
         print("3: Exit back to main menu")
         d = int(input("Which of the above options would you like to do?")
         if d == 1:
-            #Run visualization
+            data_vis()
         elif d == 2:
             #Predictive analysis wrapper function
         elif d == 3:
