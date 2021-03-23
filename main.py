@@ -8,7 +8,7 @@ Created on Wed Feb 24 11:04:56 2021
 
 from symbol_update import update_symbol_list
 from data_update import update_data_stores
-from data_analytics import data_analytics
+#from data_analytics import data_analytics
 
 """This is the main file for the market analysis project
        The main aim of this project is the practice and learn more aspects of coding
@@ -41,12 +41,12 @@ while exit == False:
         """update_data_stores is a function to wrap up the updating of data currently
               stored for the symbol lists."""
         update_data_stores()
-    elif choice == 3:
+    #elif choice == 3:
         """data_analytics is a function to wrap up the data analysis process.
            It wraps up functions for visualizing the data, running machine learning
               algorithms on the data, and utilizing the results of the machine learning
               to create predictions about future data."""
-        data_analytics()
+        #data_analytics()
     elif choice == 4:
         """This is used to control exiting the menu loop.
            Exiting this menu loop will quit the current run of the program"""

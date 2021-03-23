@@ -43,9 +43,12 @@ for sect in list_list:
         for column in col_list:
             col_path = sect + "/" + symbol + "_data/" + symbol + "_"+ column + ".jpg"
             png_path = os.path.join(DocRoot, col_path)
+            fig = plt.gcf()
+            fig.set_size_inches((15, 11), forward = False)
+            plt.grid()
             sns.lineplot(data = data[column])
             #plt.show()
-            plt.savefig(png_path)
+            fig.savefig(png_path, dpi=1000)
             plt.clf()
             
     

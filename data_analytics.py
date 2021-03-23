@@ -30,10 +30,10 @@ def data_analytics():
         print("1: Create visualizations for all available data")
         print("2: Run predictive analysis on select data")
         print("3: Exit back to main menu")
-        d = int(input("Which of the above options would you like to do?")
+        d = int(input("Which of the above options would you like to do?"))
         if d == 1:
             data_vis()
-        elif d == 2:
-            #Predictive analysis wrapper function
+        """elif d == 2:
+            #Predictive analysis wrapper function"""
         elif d == 3:
             exit = True
