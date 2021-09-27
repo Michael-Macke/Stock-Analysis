@@ -10,17 +10,26 @@ from path_check import path_check
 from read_sym import read_sym
 
 """This is the function to modify symbol lists"""
+"""I will leave the print statements in the code until I can make tooltips
+      pop out with them when things go wrong."""
 
 def write_sym(symt, symlist, modifier):
     base_path = path_check(symt)
     symbol_path = os.path.join(base_path, "symbollist.txt")
     if not(os.path.isfile(symbol_path)):
-        print("File does not exist. Creating one now.")
+        #print("File does not exist. Creating one now.")
+        with open(symbol_path, "w") as writer:
+            writer.writelines("%s\n" % symbol for symbol in symlist)
+        """Need to create the folders that will store the added symbols data and
+              visualizations"""
+        for sym in symlist:
+            folder_path = symt + "/" + sym + "_data"
+            path_check(folder_path)
     else:
-        print("File exists. Checking if there is content in file.")
+        #print("File exists. Checking if there is content in file.")
         content = read_sym(symt)
         if not content and modifier == "delete":
-            print("There is no content to be deleted. \n Returning you to the menu")
+            #print("There is no content to be deleted. \n Returning you to the menu")
             return
         elif content:
             for element in symlist:
@@ -28,13 +37,13 @@ def write_sym(symt, symlist, modifier):
                     content.append(element)
                 elif modifier == "delete":
                     content.remove(element)
-    with open(symbol_path, "w") as writer:
-        writer.writelines("%s\n" % symbol for symbol in content)
-    """Need to create the folders that will store the added symbols data and
-          visualizations"""
-    for sym in content:
-        folder_path = symt + "/" + sym + "_data"
-        path_check(folder_path)
+        with open(symbol_path, "w") as writer:
+            writer.writelines("%s\n" % symbol for symbol in content)
+        """Need to create the folders that will store the added symbols data and
+              visualizations"""
+        for sym in content:
+            folder_path = symt + "/" + sym + "_data"
+            path_check(folder_path)
     
     return
             

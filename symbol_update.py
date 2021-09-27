@@ -16,6 +16,7 @@ from write_sym import write_sym
          
 def update_symbol_list():
     """First we need to find out which of the types are being modified"""
+    
     print("Which type of symbol are you wishing to modify?")
     print("1: Company symbol list")
     print("2: Commodity symbol list")
