@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import scrolledtext
 from tkinter import Menu
+from tkinter import Grid
 from pandas import DataFrame
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
@@ -25,6 +26,10 @@ import os
 win = tk.Tk()
 
 win.title("NASDAQ Analysis Engine")
+
+
+Grid.rowconfigure(win, 0, weight = 1)
+Grid.columnconfigure(win, 0, weight = 1)
 
 """Define any of the commands that the GUI will need to manage the symbol lists,
       manage data updates or manage data visualizations"""
@@ -203,6 +208,16 @@ tabControl.add(tab5, text = "Open Graph")
 
 tabControl.pack(expand=1, fill="both")
 
+"""Use the following configure lines to make it that the widgets dynamically
+   change size with the window
+   Each tab needs to be refined so that the dynamic scaling looks presentable"""
+tab1.columnconfigure(0, weight = 1)
+tab1.rowconfigure(0, weight = 1)
+
+tab2.columnconfigure((0, 1, 2, 3), weight = 1)
+tab2.rowconfigure(( 7, 8, 9), weight = 3)
+tab2.rowconfigure((5, 6, 10), weight = 1)
+
 a_label = ttk.Label(tab1, text="A label")
 a_label.grid(column=0, row=0)
 
@@ -217,23 +232,23 @@ radVar = tk.StringVar()
 radMod = tk.StringVar()
 
 rad1 = tk.Radiobutton(tab2, text = "Companies", variable = radVar, value = "Companies")
-rad1.grid(column = 0, row = 5, sticky=tk.W, columnspan = 3)
+rad1.grid(column = 0, row = 5, sticky="NSEW", columnspan = 2)
 
 rad2 = tk.Radiobutton(tab2, text = "Commodities", variable = radVar, value = "Commodities")
-rad2.grid(column = 3, row = 5, sticky=tk.W, columnspan = 3)
+rad2.grid(column = 2, row = 5, sticky="NSEW", columnspan = 2)
 
 rad3 = tk.Radiobutton(tab2, text = "Add", variable = radMod, value = "add")
-rad3.grid(column = 0, row = 6, sticky=tk.W, columnspan = 3)
+rad3.grid(column = 0, row = 6, sticky="NSEW", columnspan = 2)
 
 rad4 = tk.Radiobutton(tab2, text = "delete", variable = radMod, value = "delete")
-rad4.grid(column = 3, row = 6, sticky=tk.W, columnspan = 3)
+rad4.grid(column = 2, row = 6, sticky="NSEW", columnspan = 2)
 
 """Add in a scrolling text box which will be used to display the company or
     commodity symbol list depending on the radial button choice above"""
 scrol_w = 50
 scrol_h = 4
-scr = scrolledtext.ScrolledText(tab2, width = scrol_w, height = scrol_h, wrap=tk.WORD)
-scr.grid(column = 0, row = 7, columnspan = 3)
+scr = scrolledtext.ScrolledText(tab2, wrap=tk.WORD)
+scr.grid(column = 0, row = 7, columnspan = 4, sticky = "NSEW")
 #scr.set(radVar.get())
 init_list = read_sym("Companies")
 scr.insert(tk.INSERT,init_list)
@@ -241,18 +256,18 @@ scr.insert(tk.INSERT,init_list)
 
 """Adding in the label and text box for adding/deleting symbols form the
     list displayed above"""
-ttk.Label(tab2, text = "Enter symbols below with a space separating them").grid(column = 0, row = 8, sticky=tk.W, columnspan = 3)
+ttk.Label(tab2, text = "Enter symbols below with a space separating them").grid(column = 0, row = 8, sticky="NSEW", columnspan = 3)
 symbols = tk.StringVar()
 symb_enter = ttk.Entry(tab2, width = 12, textvariable=symbols)
-symb_enter.grid(column=0, row = 9, sticky=tk.W)
+symb_enter.grid(column=0, row = 9, columnspan = 2, sticky="NSEW")
 
 disp_button = ttk.Button(tab2, text = "Display List", command = display_list)
-disp_button.grid(column = 0, row = 10, sticky=tk.W)
+disp_button.grid(column = 0, row = 10, sticky="NSEW", columnspan = 2)
 
 cpcm = radVar.get()
 ad = radMod.get()
 ul_button = ttk.Button(tab2, text = "Update List", command = update_symbol_list)
-ul_button.grid(column = 1, row = 10, sticky=tk.W)
+ul_button.grid(column = 2, row = 10, sticky="NSEW", columnspan = 2)
 
 
  
